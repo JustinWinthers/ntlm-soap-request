@@ -21,7 +21,7 @@ Easily call a Windows authenticated soap service, from Node
         , request = new request({
             userName:'YOUR_USERNAME',
             password:'YOUR_PASSWORD',
-            domain:'nreca',
+            domain:'YOUR_WINDOWS_DOMAIN',
             serviceMethod: 'WCF_METHOD_NAME',
             serviceNameSpace:'WCF_NAMESPACE_URL',
             endpoint:'WCF_SERVICE_URL'
