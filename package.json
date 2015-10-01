@@ -1,20 +1,25 @@
 {
   "name": "ntlm-soap-request",
-  "version": "1.0.4",
-  "description": "Class to test ntlm request to neb services",
+  "version": "1.0.5",
+  "description": "Easily call a Windows authenticated soap service from Node",
   "main": "index.js",
-  "keywords": ["ntlm", "soap", "wcf"],
+  "keywords": [
+    "ntlm",
+    "soap",
+    "wcf"
+  ],
   "homepage": "https://github.com/JustinWinthers/ntlm-soap-request",
   "dependencies": {
     "agentkeepalive": "^2.0.3",
     "async": "^1.4.2",
+    "bluebird": "^2.10.1",
     "httpntlm": "^1.5.2",
     "httpreq": "^0.4.13",
     "xml2js": "^0.4.12"
   },
   "repository": {
-    "type": "git"
-  , "url": "https://github.com/JustinWinthers/ntlm-soap-request.git"
+    "type": "git",
+    "url": "https://github.com/JustinWinthers/ntlm-soap-request.git"
   },
   "devDependencies": {},
   "scripts": {

@@ -4,6 +4,7 @@ var httpreq = require('httpreq');
 var HttpAgent = require('agentkeepalive');
 var keepaliveAgent = new HttpAgent({keepAlive: true});
 var xml2js = require('xml2js');
+var Promise = require("bluebird");
 
 var NtlmSoapRequest = function(config){
 
@@ -179,12 +180,31 @@ NtlmSoapRequest.prototype = {
             });
     },
 
+    promise: function(){return this.exec()},
+
     exec: function(callback){
 
         this.options = this.buildOptions(this.config);
         this.soapRequest = this.buildSoapRequest(this.config);
         this.type1Message = this.buildType1Message(this.options);
-        this.processRequest(this, callback);
+
+        if (callback){
+            this.processRequest(this, callback);
+        } else {
+
+            var self = this;
+            return new Promise(function (resolve, reject) {
+
+                self.processRequest(self, function (err, res) {
+
+                    if (err) reject(err);
+
+                    else resolve(res);
+
+                });
+
+            })
+        }
 
     }
 };
