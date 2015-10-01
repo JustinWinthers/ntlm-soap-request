@@ -1,10 +1,12 @@
+#Inspired by the TyBoss Framework
+
 #Description
 
 Easily call a Windows authenticated soap service, from Node
 
 
 #How can I install it?
-============
+
 1) Get the library:
 
 **Using npm**
