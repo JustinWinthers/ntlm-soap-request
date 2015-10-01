@@ -1,0 +1,19 @@
+{
+  "name": "ntlm-soap-request",
+  "version": "1.0.0",
+  "description": "Class to test ntlm request to neb services",
+  "main": "index.js",
+  "dependencies": {
+    "agentkeepalive": "^2.0.3",
+    "async": "^1.4.2",
+    "httpntlm": "^1.5.2",
+    "httpreq": "^0.4.13",
+    "xml2js": "^0.4.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Justin Winthers",
+  "license": "MIT"
+}
