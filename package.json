@@ -1,14 +1,20 @@
 {
   "name": "ntlm-soap-request",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Class to test ntlm request to neb services",
   "main": "index.js",
+  "keywords": ["ntlm", "soap", "wcf"],
+  "homepage": "https://github.com/JustinWinthers/ntlm-soap-request",
   "dependencies": {
     "agentkeepalive": "^2.0.3",
     "async": "^1.4.2",
     "httpntlm": "^1.5.2",
     "httpreq": "^0.4.13",
     "xml2js": "^0.4.12"
+  },
+  "repository": {
+    "type": "git"
+  , "url": "https://github.com/JustinWinthers/ntlm-soap-request.git"
   },
   "devDependencies": {},
   "scripts": {
