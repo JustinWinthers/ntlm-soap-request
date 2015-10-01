@@ -1,6 +1,6 @@
 {
   "name": "ntlm-soap-request",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Class to test ntlm request to neb services",
   "main": "index.js",
   "keywords": ["ntlm", "soap", "wcf"],
