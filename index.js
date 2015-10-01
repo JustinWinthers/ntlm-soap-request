@@ -73,7 +73,7 @@ NtlmSoapRequest.prototype = {
 
     postType3ToServer: function(request, callback){
 
-        httpreq.post(request.options.url, {
+        return httpreq.post(request.options.url, {
             body:request.soapRequest,
             headers:{
                 'Content-Type': 'application/soap+xml;charset=UTF-8',
