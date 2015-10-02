@@ -26,11 +26,11 @@ NtlmSoapRequest.prototype = {
         return [
             "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:tem=\"http://tempuri.org/\">",
             "<soap:Header xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">",
-            "<wsa:Action>" + config.serviceNameSpace + "</wsa:Action>",
+            "<wsa:Action>" + config.operationInputUrl + "</wsa:Action>",
             "<wsa:To>" + config.endpoint + "</wsa:To>",
             "</soap:Header>",
             "<soap:Body>",
-            "<tem:" + config.serviceMethod + "/>",
+            "<tem:" + config.operationName + "/>",
             "</soap:Body>",
             "</soap:Envelope>"
         ].join('\n');
@@ -48,7 +48,7 @@ NtlmSoapRequest.prototype = {
         return httpreq.post(request.options.url, {
             body:request.soapRequest,
             headers:{
-                'Content-Type': 'application/soap+xml;charset=UTF-8;action=' + request.config.serviceNameSpace,
+                'Content-Type': 'application/soap+xml;charset=UTF-8;action=' + request.config.operationInputUrl,
                 'Connection' : 'keep-alive',
                 'Authorization': request.type1Message
             },

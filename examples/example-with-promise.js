@@ -4,8 +4,8 @@ var request = require('ntlm-soap-request')
         userName:'YOUR_USERNAME',
         password:'YOUR_PASSWORD',
         domain:'YOUR_WINDOWS_DOMAIN',
-        serviceMethod: 'WCF_METHOD_NAME',
-        serviceNameSpace:'WCF_NAMESPACE_URL',
+        operationName: 'WCF_METHOD_NAME',
+        operationInputUrl:'WCF_NAMESPACE_URL',
         endpoint:'WCF_SERVICE_URL'
     });
 
