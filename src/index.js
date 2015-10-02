@@ -1,16 +1,13 @@
-var ntlm = require('httpntlm').ntlm;
-var async = require('async');
-var httpreq = require('httpreq');
-var HttpAgent = require('agentkeepalive');
-var keepaliveAgent = new HttpAgent({keepAlive: true});
-var xml2js = require('xml2js');
-var Promise = require("bluebird");
+var   ntlm = require('httpntlm').ntlm
+    , async = require('async')
+    , httpreq = require('httpreq')
+    , HttpAgent = require('agentkeepalive')
+    , keepaliveAgent = new HttpAgent({keepAlive: true})
+    , xml2js = require('xml2js')
+    , Promise = require("bluebird")
 
-var NtlmSoapRequest = function(config){
+    , NtlmSoapRequest = function(config){ this.config = config };
 
-    this.config = config
-
-};
 
 NtlmSoapRequest.prototype = {
 
@@ -59,7 +56,7 @@ NtlmSoapRequest.prototype = {
         }, callback);
     },
 
-    buildType2Message:function(res){
+    buildType2Message: function(res){
 
         return ntlm.parseType2Message(res.headers['www-authenticate']);
 
