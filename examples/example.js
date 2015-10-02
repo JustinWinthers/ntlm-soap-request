@@ -11,6 +11,8 @@ var SoapRequest = require('ntlm-soap-request')
 
 soap.exec(function(err, result){
 
+    if (err) console.log(err);
+
     if (result) console.log(JSON.stringify(result, undefined, '\t'));
 
 });
