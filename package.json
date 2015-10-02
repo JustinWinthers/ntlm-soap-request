@@ -1,6 +1,6 @@
 {
   "name": "ntlm-soap-request",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Easily call a Windows authenticated soap service from Node",
   "main": "src/index.js",
   "keywords": [
