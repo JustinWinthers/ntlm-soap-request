@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var   ntlm = require('httpntlm').ntlm
     , async = require('async')
