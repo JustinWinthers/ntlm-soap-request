@@ -45,14 +45,17 @@ NtlmSoapRequest.prototype = {
     postType1ToServer: function(request, callback){
 
         return httpreq.post(request.options.url, {
-            //body:request.soapRequest,
+            body:request.soapRequest,
             headers:{
                 'Content-Type': 'application/soap+xml;charset=UTF-8;action=' + request.config.operationInputUrl,
                 'Connection' : 'keep-alive',
-                'Authorization': request.type1Message
+                'Authorization': request.type1message
             },
             agent: keepaliveAgent
-        }, callback);
+        }, function (err, res){
+
+            callback (err, res);
+        });
     },
 
     buildType2Message: function(res){
@@ -70,7 +73,7 @@ NtlmSoapRequest.prototype = {
     postType3ToServer: function(request, callback){
 
         return httpreq.post(request.options.url, {
-            //body:request.soapRequest,
+            body:request.soapRequest,
             headers:{
                 'Content-Type': 'application/soap+xml;charset=UTF-8',
                 'Connection' : 'Close',
@@ -92,6 +95,7 @@ NtlmSoapRequest.prototype = {
 
         if (res.statusCode === 200) {
 
+
             var data = res.body.replace(/s:/g,'').replace(/b:/g,'');
 
             var parseString = xml2js.parseString;
@@ -102,17 +106,27 @@ NtlmSoapRequest.prototype = {
 
             });
 
-        } else {
+        }
 
-            var data = res.body.replace(/s:/g,'').replace(/a:/g,'');
+        else {
 
-            var parseString = xml2js.parseString;
+            if (res.statusCode === 401) {
 
-            parseString(data, parseOptions, function (err, result) {
+                callback({statusCode:401});
 
-                callback(result.Envelope.Body.Fault.Reason.Text);
+            }
 
-            });
+            else {
+                var data = res.body.replace(/s:/g, '').replace(/a:/g, '');
+
+                var parseString = xml2js.parseString;
+
+                parseString(data, parseOptions, function (err, result) {
+
+                    callback(result.Envelope.Body.Fault.Reason.Text);
+
+                });
+            }
 
         }
 
@@ -122,7 +136,7 @@ NtlmSoapRequest.prototype = {
 
         this.options = this.buildOptions(this.config);
         this.soapRequest = this.buildSoapRequest(this.config);
-        this.type1Message = this.buildType1Message(this.options);
+        this.type1message = this.buildType1Message(this.options);
 
         if (callback) {
             this.getAuthToken(this, callback);
@@ -214,7 +228,7 @@ NtlmSoapRequest.prototype = {
 
     promise: function(){return this.exec()},
 
-    exec: function(callback, tryingAgain){
+    exec: function(callback){
 
         if (this.isAuthorized) {
 
@@ -228,23 +242,43 @@ NtlmSoapRequest.prototype = {
 
                 return new Promise(function (resolve, reject) {
 
-                    self.processAuthorizedRequest(self, function (err, res) {
+                    return self.processAuthorizedRequest(self, function (err, res) {
 
                         // todo: if it fails due to a 401, it may be because the connection closed after being idle,
                         // todo: so refresh authorization and try once more.  Update logic to look for 401 only.
 
-                        if (err) {
+                        if (err && err.statusCode === 401) {
 
-                            if (!tryingAgain) {
+                            if (!self.secondTry) {
 
                                 self.isAuthorized = false;
-                                return self.exec(callback, true);
+                                self.secondTry = true;
 
-                            } else
+                                //clean up the object for our second pass
+                                delete self.type1message;
+                                delete self.type2message;
+                                delete self.type3message;
+
+                                self.exec(null, true)
+                                    .then(function(result){
+
+                                        resolve(result)
+
+                                    } )
+                                    .error(function(error){
+                                        reject(error);
+                                    });
+
+                            } else {
+
                                 reject(err);
-                        }
 
-                        else resolve(res);
+                            }
+
+                        } else {
+
+                            resolve(res);
+                        }
 
                     });
 

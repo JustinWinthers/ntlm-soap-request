@@ -18,7 +18,7 @@
 
     describe('PROMISES:', function () {
 
-        createNockInstances(2);
+        createNockInstances(1);
 
         it('promise method should return a promise when a callback is not specified', function (done) {
             expect(soap.promise()).to.have.property('then');
