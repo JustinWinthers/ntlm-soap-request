@@ -2,6 +2,8 @@
 
 Easily call a Windows authenticated soap service from Node
 
+---
+
 ###### Inspired by the `TyBoss Framework`
 
 **[Follow me (@javascriptbully) on Twitter!](https://twitter.com/intent/user?screen_name=javascriptbully)**
