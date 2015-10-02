@@ -92,13 +92,11 @@ var   express      = require('express')
 
 soap.authorize()
 
+   /* token is not used here, but shown to illustrate it exists
+      but it's cached in the `soap` object  */
     .then(function(token){
 
-        /* token is not used here, but shown to illustrate it exists
-            but it's cached in the `soap` object
-        */
-
-        //set your route for your app
+        // set your route for your app
         app.get('/route/to/soap/abstraction',function(req, res) {
             soap.promise()
                 .then(function(result){
@@ -110,6 +108,7 @@ soap.authorize()
         });
 
     })
+
     .error(function(err){
 
       /* throw an error to either stop the server from starting if it's severe enough or handle the error
@@ -118,11 +117,8 @@ soap.authorize()
 
       throw new Error('failed to authorize soap service');
 
-    }
-
-    ;
+    };
 ````
-
 
 ## Configuration Object Options
 
