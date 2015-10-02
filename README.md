@@ -8,6 +8,8 @@ Easily call a Windows authenticated soap service from Node
 
 [![NPM](https://nodei.co/npm/ntlm-soap-request.png?downloads=true&stars=true)](https://nodei.co/npm/ntlm-soap-request/)
 
+[![build status](https://secure.travis-ci.org/JustinWinthers/ntlm-soap-request.png)](http://travis-ci.org/JustinWinthers/ntlm-soap-request)
+
 ## Installation (via [npm](https://npmjs.org/package/ntlm-soap-request))
 
 ```bash
