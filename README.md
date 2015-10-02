@@ -68,15 +68,15 @@ myPromise.error(function(err){
 
 ## Configuration Object Options
 
-| Option | Description |
-| --- | --- |
+| Option | Description
+| --- | ---
 
-| `username` | set this to your windows user account or a windows service account on the windows machine where the service resides.|
-| `password` | set to the windows account password for the account used above.|
-| `domain` | set to the windows domain where the service resides.|
-| `serviceMethod` | set to the method name in the wsdl you plan to call.|
-| `serviceNameSpace` | set to the full namespace address as defined in the wsdl; be sure to include the protocol `http:\\` or `https:\\` in the address.|
-| `endpoint` | set to the full url address of the windows service you're calling; be sure to include the protocol `http:\\` or `https:\\` in the address.|
+| `username` | set this to your windows user account or a windows service account on the windows machine where the service resides
+| `password` | set to the windows account password for the account used above
+| `domain` | set to the windows domain where the service resides
+| `serviceMethod` | set to the method name in the wsdl you plan to call
+| `serviceNameSpace` | set to the full namespace address as defined in the wsdl; be sure to include the protocol `http:\\` or `https:\\` in the address
+| `endpoint` | set to the full url address of the windows service you're calling; be sure to include the protocol `http:\\` or `https:\\` in the address
 
 
 ## Author
