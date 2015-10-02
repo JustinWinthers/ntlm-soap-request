@@ -46,8 +46,8 @@ $ npm install ntlm-soap-request
             userName:'YOUR_USERNAME',
             password:'YOUR_PASSWORD',
             domain:'YOUR_WINDOWS_DOMAIN',
-            operationName: 'WCF_METHOD_NAME',
-            operationInputUrl:'WCF_NAMESPACE_URL',
+            operationName: 'WCF_OPERATION_NAME',
+            operationInputUrl:'WCF_OPERATION_INPUT_URL',
             endpoint:'WCF_SERVICE_URL'
         });
 
@@ -73,8 +73,8 @@ myPromise.error(function(err){
 | `username` | set this to your windows user account or a windows service account on the windows machine where the service resides
 | `password` | set to the windows account password for the account used above
 | `domain` | set to the windows domain where the service resides
-| `operationName` | set to the method name in the wsdl you plan to call
-| `operationInputUrl` | set to the full namespace address as defined in the wsdl; be sure to include the protocol `http:\\` or `https:\\` in the address
+| `operationName` | set to the method/operation name in the wsdl you plan to call
+| `operationInputUrl` | set to the full wsdl action input address for the operation; be sure to include the protocol `http:\\` or `https:\\` in the address
 | `endpoint` | set to the full url address of the windows service you're calling; be sure to include the protocol `http:\\` or `https:\\` in the address
 
 
