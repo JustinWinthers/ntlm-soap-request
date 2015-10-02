@@ -76,8 +76,8 @@ myPromise.error(function(err){
 | `password` | set to the windows account password for the account used above
 | `domain` | set to the windows domain where the service resides
 | `operationName` | set to the method/operation name in the wsdl you plan to call
-| `operationInputUrl` | set to the full wsdl action input address for the operation; be sure to include the protocol `http:\\` or `https:\\` in the address
-| `endpoint` | set to the full url address of the windows service you're calling; be sure to include the protocol `http:\\` or `https:\\` in the address
+| `operationInputUrl` | set to the full wsdl action input address for the operation.  Be sure to include the protocol `http:\\` or `https:\\` in the address
+| `endpoint` | set to the full url address of the windows service you're calling.  Be sure to include the protocol `http:\\` or `https:\\` in the address
 
 
 ## Author
