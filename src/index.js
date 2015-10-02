@@ -230,7 +230,7 @@ NtlmSoapRequest.prototype = {
                     self.processAuthorizedRequest(self, function (err, res) {
 
                         // todo: if it fails due to a 401, it may be because the connection closed after being idle,
-                        // todo: so refresh authorization and try once more.  Update logic to look for 401 only
+                        // todo: so refresh authorization and try once more.  Update logic to look for 401 only.
 
                         if (err) {
 

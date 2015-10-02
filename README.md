@@ -111,8 +111,8 @@ soap.authorize()
 
     .error(function(err){
 
-      /* throw an error to either stop the server from starting if it's severe enough or handle the error
-         gracefully
+      /* throw an error to either stop the server from starting if it's severe
+         enough or handle the error gracefully
       */
 
       throw new Error('failed to authorize soap service');
@@ -136,7 +136,7 @@ soap.authorize()
 
 - I highly recommend using the promise api over the callback api.  The promise API will handle retry's if the connection
 closes because the connection has been idle.  A retry will be sent to reauthorize the request.  However, if you use the
-callback api then you will have to manage this yourself by inspecting the error
+callback api then you will have to manage this yourself by inspecting the error.
 
 ## Author
 
