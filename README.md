@@ -1,6 +1,8 @@
 # `ntlm-soap-request`
 
-Follow me (@javascriptbully) on Twitter!
+**[Follow me (@javascriptbully) on Twitter!](https://twitter.com/intent/user?screen_name=javascriptbully)**
+
+[![NPM](https://nodei.co/npm/ntlm-soap-request.png?downloads=true&stars=true)](https://nodei.co/npm/ntlm-soap-request/)
 
 ##Inspired by the TyBoss Framework
 
