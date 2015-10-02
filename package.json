@@ -3,6 +3,9 @@
   "version": "1.0.11",
   "description": "Easily call a Windows authenticated soap service from Node",
   "main": "src/index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "keywords": [
     "soap",
     "ntlm",
@@ -10,6 +13,16 @@
     "soap-ntlm"
   ],
   "homepage": "https://github.com/JustinWinthers/ntlm-soap-request",
+  "contributors": [
+    {
+      "name": "Justin Winthers",
+      "email": "jwintherse@gmail.com",
+      "web": "https://github.com/JustinWinthers/"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/JustinWinthers/ntlm-soap-request/issues"
+  },
   "dependencies": {
     "agentkeepalive": "^2.0.3",
     "async": "^1.4.2",
@@ -22,9 +35,12 @@
     "type": "git",
     "url": "https://github.com/JustinWinthers/ntlm-soap-request.git"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^1.5.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint",
+    "lint": "./node_modules/eslint/bin/eslint.js src test"
   },
   "author": "Justin Winthers",
   "license": "MIT"

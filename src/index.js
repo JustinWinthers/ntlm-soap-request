@@ -1,10 +1,12 @@
+'use strict';
+
 var   ntlm = require('httpntlm').ntlm
     , async = require('async')
     , httpreq = require('httpreq')
     , HttpAgent = require('agentkeepalive')
     , keepaliveAgent = new HttpAgent({keepAlive: true})
     , xml2js = require('xml2js')
-    , Promise = require("bluebird")
+    , Promise = require('bluebird')
 
     , NtlmSoapRequest = function(config){ this.config = config };
 
@@ -23,15 +25,15 @@ NtlmSoapRequest.prototype = {
 
     buildSoapRequest: function(config){
         return [
-            "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:tem=\"http://tempuri.org/\">",
-            "<soap:Header xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">",
-            "<wsa:Action>" + config.operationInputUrl + "</wsa:Action>",
-            "<wsa:To>" + config.endpoint + "</wsa:To>",
-            "</soap:Header>",
-            "<soap:Body>",
-            "<tem:" + config.operationName + "/>",
-            "</soap:Body>",
-            "</soap:Envelope>"
+            '<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:tem=\"http://tempuri.org/\">',
+            '<soap:Header xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">',
+            '<wsa:Action>' + config.operationInputUrl + '</wsa:Action>',
+            '<wsa:To>' + config.endpoint + '</wsa:To>',
+            '</soap:Header>',
+            '<soap:Body>',
+            '<tem:' + config.operationName + '/>',
+            '</soap:Body>',
+            '</soap:Envelope>'
         ].join('\n');
     },
 
@@ -145,34 +147,34 @@ NtlmSoapRequest.prototype = {
 
         async.waterfall([
 
-                function (callback){
+            function (callback){
 
-                    context.postType1ToServer(context, callback);
+                context.postType1ToServer(context, callback);
 
-                },
+            },
 
-                function (responseFromServer, callback) {
+            function (responseFromServer, callback) {
 
-                    context.type2message = context.buildType2Message(responseFromServer);
+                context.type2message = context.buildType2Message(responseFromServer);
 
-                    if (!responseFromServer.headers['www-authenticate'])
-                        callback(new Error('www-authenticate not found on response of second request'));
-                    else
-                        callback (null, context.type2message);
+                if (!responseFromServer.headers['www-authenticate'])
+                    callback(new Error('www-authenticate not found on response of second request'));
+                else
+                    callback (null, context.type2message);
 
-                },
+            },
 
-                function (type2message, callback) {
+            function (type2message, callback) {
 
-                    context.type3message = context.buildType3Message(type2message, context.options);
+                context.type3message = context.buildType3Message(type2message, context.options);
 
-                    context.isAuthorized = true;
+                context.isAuthorized = true;
 
-                    callback(null, context.type3message);
+                callback(null, context.type3message);
 
-                }
+            }
 
-            ],
+        ],
 
             function (err, token) {
 
@@ -183,24 +185,23 @@ NtlmSoapRequest.prototype = {
             });
     },
 
-
     processAuthorizedRequest: function(context, callback){
 
         async.waterfall([
 
-                function (callback) {
+            function (callback) {
 
-                    context.postType3ToServer(context, callback);
+                context.postType3ToServer(context, callback);
 
-                },
+            },
 
-                function (responseFromServerType3, callback){
+            function (responseFromServerType3, callback){
 
-                    context.parseResponse(responseFromServerType3, callback)
+                context.parseResponse(responseFromServerType3, callback)
 
-                }
+            }
 
-            ],
+        ],
 
             function (err, data) {
 
