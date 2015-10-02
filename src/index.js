@@ -120,7 +120,32 @@ NtlmSoapRequest.prototype = {
 
     },
 
-    processRequest: function(context, callback){
+    authorize: function(callback) {
+
+        this.options = this.buildOptions(this.config);
+        this.soapRequest = this.buildSoapRequest(this.config);
+        this.type1Message = this.buildType1Message(this.options);
+
+        if (callback) {
+            this.getAuthToken(this, callback);
+        } else {
+
+            var self = this;
+            return new Promise(function (resolve, reject) {
+
+                self.getAuthToken(self, function (err, token) {
+
+                    if (err) reject(err);
+
+                    else resolve(token);
+
+                });
+
+            })
+        }
+    },
+
+    getAuthToken: function(context, callback) {
 
         async.waterfall([
 
@@ -145,15 +170,33 @@ NtlmSoapRequest.prototype = {
 
                 function (type2message, callback) {
 
-                    context.type3message = context.buildType3Message(type2message, context.options)
+                    context.type3message = context.buildType3Message(type2message, context.options);
+
+                    context.isAuthorized = true;
 
                     callback(null, context.type3message);
 
 
-                },
+                }
 
 
-                function (type3msg, callback) {
+            ],
+
+            function (err, token) {
+
+                if (err) callback (err);
+
+                if (token) callback (null, token);
+
+            });
+    },
+
+
+    processAuthorizedRequest: function(context, callback){
+
+        async.waterfall([
+
+                function (callback) {
 
                     context.postType3ToServer(context, callback);
 
@@ -181,27 +224,45 @@ NtlmSoapRequest.prototype = {
 
     exec: function(callback){
 
-        this.options = this.buildOptions(this.config);
-        this.soapRequest = this.buildSoapRequest(this.config);
-        this.type1Message = this.buildType1Message(this.options);
+        if (this.isAuthorized) {
 
-        if (callback){
-            this.processRequest(this, callback);
+            console.log ('authorized request:..');
+
+            if (callback) {
+                this.processAuthorizedRequest(this, callback)
+            } else {
+
+                var self = this;
+                return new Promise(function (resolve, reject) {
+
+                    self.processAuthorizedRequest(self, function (err, res) {
+
+                        if (err) reject(err);
+
+                        else resolve(res);
+
+                    });
+
+                })
+
+            }
+
+
         } else {
 
             var self = this;
-            return new Promise(function (resolve, reject) {
 
-                self.processRequest(self, function (err, res) {
+            return self.authorize()
 
-                    if (err) reject(err);
+                .then(function(token){
 
-                    else resolve(res);
+                    return self.exec(callback);
 
                 });
 
-            })
         }
+
+
     }
 };
 

@@ -68,6 +68,58 @@ myPromise.error(function(err){
 });
 ````
 
+### Authorizing the request first, and storing the token for subsequent calls
+
+Alternatively, you can authorize the request when you start your web server so that subsequent calls
+will use the already authorized service call.  This way, you won't be logging in with each request.
+Keepaliveagent is used to keep the socket open.  The following example shows how you can wire up a
+route after you've authorized the service so your app won't keep reauthorizing the service, but instead
+stay authorized with a cached token it received from the initial auth request.
+
+````javascript
+var   express      = require('express')
+    , app          = express()
+    , SoapRequest   = require('./ntlm-soap-request')
+
+    , soap = new SoapRequest({
+        userName:'YOUR_USERNAME',
+        password:'YOUR_PASSWORD',
+        domain:'YOUR_WINDOWS_DOMAIN',
+        operationName: 'WCF_OPERATION_NAME',
+        operationInputUrl:'WCF_OPERATION_INPUT_URL',
+        endpoint:'WCF_SERVICE_URL'
+    });
+
+soap.authorize()
+
+    .then(function(token){
+
+        //set your route for your app
+        app.get('/route/to/soap/abstraction',function(req, res) {
+            soap.promise()
+                .then(function(result){
+                    res.status(200).json(result);
+                })
+                .error(function(err){
+                    res.status(500).json({error:err});
+                }
+        });
+
+    })
+    .error(function(err){
+
+      /* throw an error to either stop the server from starting if it's severe enough or handle the error
+         gracefully
+      */
+
+      throw new Error('failed to authorize soap service');
+
+    }
+
+    ;
+````
+
+
 ## Configuration Object Options
 
 | Option | Description
