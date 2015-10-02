@@ -132,6 +132,12 @@ soap.authorize()
 | `endpoint` | set to the full url address of the windows service you're calling.  Be sure to include the protocol `http:\\` or `https:\\` in the address
 
 
+## Other Notes
+
+- I highly recommend using the promise api over the callback api.  The promise API will handle retry's if the connection
+closes because the connection has been idle.  A retry will be sent to reauthorize the request.  However, if you use the
+callback api then you will have to manage this yourself by inspecting the error
+
 ## Author
 
 **[Follow me (@javascriptbully) on Twitter!](https://twitter.com/intent/user?screen_name=javascriptbully)**

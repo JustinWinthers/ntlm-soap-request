@@ -218,10 +218,13 @@ NtlmSoapRequest.prototype = {
         if (this.isAuthorized) {
 
             if (callback && typeof callback === 'function') {
+
                 this.processAuthorizedRequest(this, callback)
+
             } else {
 
                 var self = this;
+
                 return new Promise(function (resolve, reject) {
 
                     self.processAuthorizedRequest(self, function (err, res) {
