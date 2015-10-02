@@ -222,13 +222,11 @@ NtlmSoapRequest.prototype = {
 
     promise: function(){return this.exec()},
 
-    exec: function(callback){
+    exec: function(callback, tryingAgain){
 
         if (this.isAuthorized) {
 
-            console.log ('authorized request:..');
-
-            if (callback) {
+            if (callback && typeof callback === 'function') {
                 this.processAuthorizedRequest(this, callback)
             } else {
 
@@ -237,7 +235,19 @@ NtlmSoapRequest.prototype = {
 
                     self.processAuthorizedRequest(self, function (err, res) {
 
-                        if (err) reject(err);
+                        // todo: if it fails due to a 401, it may be because the connection closed after being idle,
+                        // todo: so refresh authorization and try once more.  Update logic to look for 401 only
+
+                        if (err) {
+
+                            if (!tryingAgain) {
+
+                                self.isAuthorized = false;
+                                return self.exec(callback, true);
+
+                            } else
+                                reject(err);
+                        }
 
                         else resolve(res);
 
@@ -246,7 +256,6 @@ NtlmSoapRequest.prototype = {
                 })
 
             }
-
 
         } else {
 
@@ -259,10 +268,7 @@ NtlmSoapRequest.prototype = {
                     return self.exec(callback);
 
                 });
-
         }
-
-
     }
 };
 
