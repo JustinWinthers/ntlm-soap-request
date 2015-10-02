@@ -25,8 +25,8 @@ $ npm install ntlm-soap-request
             userName:'YOUR_USERNAME',
             password:'YOUR_PASSWORD',
             domain:'YOUR_WINDOWS_DOMAIN',
-            operationName: 'WCF_METHOD_NAME',
-            operationInputUrl:'WCF_NAMESPACE_URL',
+            operationName: 'WCF_OPERATION_NAME',
+            operationInputUrl:'WCF_OPERATION_INPUT_URL',
             endpoint:'WCF_SERVICE_URL'
         });
 
