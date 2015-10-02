@@ -70,7 +70,6 @@ myPromise.error(function(err){
 
 | Option | Description
 | --- | ---
-
 | `username` | set this to your windows user account or a windows service account on the windows machine where the service resides
 | `password` | set to the windows account password for the account used above
 | `domain` | set to the windows domain where the service resides
