@@ -1,23 +1,25 @@
-#Inspired by the TyBoss Framework
+# `ntlm-soap-request`
 
-#Description
+Follow me (@javascriptbully) on Twitter!
+
+##Inspired by the TyBoss Framework
+
+##Description
 
 Easily call a Windows authenticated soap service from Node
 
 
-#How can I install it?
+## Installation (via [npm](https://npmjs.org/package/ntlm-soap-request))
 
-1) Get the library:
+```bash
+$ npm install ntlm-soap-request
+```
 
-**Using npm**
+## Usage
 
-        npm install ntlm-soap-request
-
-
-#Calling it from your app using a node style callback:
+###Calling it from your app using a node style callback:
 
 ````javascript
-
     var request = require('ntlm-soap-request')
 
         , request = new request({
@@ -34,13 +36,11 @@ Easily call a Windows authenticated soap service from Node
         if (result) console.log(JSON.stringify(result, undefined, '\t'));
 
     });
-
 ````
 
-#Calling it from your app using the promise based api:
+###Calling it from your app using the promise based api:
 
 ````javascript
-
     var request = require('ntlm-soap-request')
 
         , request = new request({
@@ -65,5 +65,18 @@ myPromise.error(function(err){
     console.log ('error: ', err);
 
 });
-
 ````
+
+## Configuration Options
+
+* `username`: set this to your windows user account or a windows service account on the windows machine where the service resides.
+* `password` - set to the windows account password for the account used above
+* `domain` - set to the windows domain where the service resides.
+* `serviceMethod` - set to the method name in the wsdl you plan to call.
+* `serviceNameSpace` - set to the full namespace address as defined in the wsdl; be sure to include the protocol `http:\\` or `https:\\` in the address.
+* `endpoint` - set to the full url address of the windows service you're calling; be sure to include the protocol `http:\\` or `https:\\` in the address.
+
+
+## Author
+
+[Justin Winthers](https://github.com/JustinWinthers) ([jwinthers@gmail.com](mailto:jwinthers@gmail.com))

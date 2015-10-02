@@ -205,7 +205,6 @@ NtlmSoapRequest.prototype = {
 
             })
         }
-
     }
 };
 
