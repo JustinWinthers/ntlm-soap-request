@@ -8,7 +8,6 @@ var   ntlm = require('httpntlm').ntlm
 
     , NtlmSoapRequest = function(config){ this.config = config };
 
-
 NtlmSoapRequest.prototype = {
 
     buildOptions: function(config){
@@ -36,12 +35,10 @@ NtlmSoapRequest.prototype = {
         ].join('\n');
     },
 
-
     buildType1Message: function(options){
 
         return ntlm.createType1Message(options)
     },
-
 
     postType1ToServer: function(request, callback){
 
@@ -103,7 +100,6 @@ NtlmSoapRequest.prototype = {
 
             });
 
-
         } else {
 
             var data = res.body.replace(/s:/g,'').replace(/a:/g,'');
@@ -155,7 +151,6 @@ NtlmSoapRequest.prototype = {
 
                 },
 
-
                 function (responseFromServer, callback) {
 
                     context.type2message = context.buildType2Message(responseFromServer);
@@ -167,7 +162,6 @@ NtlmSoapRequest.prototype = {
 
                 },
 
-
                 function (type2message, callback) {
 
                     context.type3message = context.buildType3Message(type2message, context.options);
@@ -176,9 +170,7 @@ NtlmSoapRequest.prototype = {
 
                     callback(null, context.type3message);
 
-
                 }
-
 
             ],
 
@@ -199,7 +191,6 @@ NtlmSoapRequest.prototype = {
                 function (callback) {
 
                     context.postType3ToServer(context, callback);
-
 
                 },
 
