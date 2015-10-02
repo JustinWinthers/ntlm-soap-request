@@ -2,9 +2,9 @@
 
 Easily call a Windows authenticated soap service from Node
 
----
-
 ###### Inspired by the `TyBoss Framework`
+
+---
 
 [![NPM](https://nodei.co/npm/ntlm-soap-request.png?downloads=true&stars=true)](https://nodei.co/npm/ntlm-soap-request/)
 
