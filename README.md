@@ -1,7 +1,8 @@
 # `ntlm-soap-request`
 
-- Easily call a Windows authenticated soap service from Node
-- Inspired by the TyBoss Framework
+Easily call a Windows authenticated soap service from Node
+
+###### Inspired by the `TyBoss Framework`
 
 **[Follow me (@javascriptbully) on Twitter!](https://twitter.com/intent/user?screen_name=javascriptbully)**
 
@@ -16,7 +17,7 @@ $ npm install ntlm-soap-request
 
 ## Usage
 
-###Calling it from your app using a node style callback:
+### Calling it from your app using a node style callback:
 
 ````javascript
     var request = require('ntlm-soap-request')
@@ -37,7 +38,7 @@ $ npm install ntlm-soap-request
     });
 ````
 
-###Calling it from your app using the promise based api:
+### Calling it from your app using the promise based api:
 
 ````javascript
     var request = require('ntlm-soap-request')
