@@ -1,6 +1,6 @@
 var SoapRequest = require('ntlm-soap-request')
 
-    , request = new SoapRequest({
+    , soap = new SoapRequest({
         userName:'YOUR_USERNAME',
         password:'YOUR_PASSWORD',
         domain:'YOUR_WINDOWS_DOMAIN',
@@ -9,7 +9,7 @@ var SoapRequest = require('ntlm-soap-request')
         endpoint:'WCF_SERVICE_URL'
     });
 
-var myPromise = request.promise();
+var myPromise = soap.promise();
 
 myPromise.then(function(result){
 

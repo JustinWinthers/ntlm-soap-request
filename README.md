@@ -21,7 +21,7 @@ $ npm install ntlm-soap-request
 ````javascript
     var SoapRequest = require('ntlm-soap-request')
 
-        , request = new SoapRequest({
+        , soap = new SoapRequest({
             userName:'YOUR_USERNAME',
             password:'YOUR_PASSWORD',
             domain:'YOUR_WINDOWS_DOMAIN',
@@ -30,7 +30,7 @@ $ npm install ntlm-soap-request
             endpoint:'WCF_SERVICE_URL'
         });
 
-    request.exec(function(err, result){
+    soap.exec(function(err, result){
 
         if (result) console.log(JSON.stringify(result, undefined, '\t'));
 
@@ -42,7 +42,7 @@ $ npm install ntlm-soap-request
 ````javascript
     var SoapRequest = require('ntlm-soap-request')
 
-        , request = new SoapRequest({
+        , soap = new SoapRequest({
             userName:'YOUR_USERNAME',
             password:'YOUR_PASSWORD',
             domain:'YOUR_WINDOWS_DOMAIN',
@@ -51,7 +51,7 @@ $ npm install ntlm-soap-request
             endpoint:'WCF_SERVICE_URL'
         });
 
-var myPromise = request.promise();
+var myPromise = soap.promise();
 
 myPromise.then(function(result){
 
