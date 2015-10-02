@@ -19,9 +19,9 @@ $ npm install ntlm-soap-request
 ### Calling it from your app using a node style callback:
 
 ````javascript
-    var request = require('ntlm-soap-request')
+    var SoapRequest = require('ntlm-soap-request')
 
-        , request = new request({
+        , request = new SoapRequest({
             userName:'YOUR_USERNAME',
             password:'YOUR_PASSWORD',
             domain:'YOUR_WINDOWS_DOMAIN',
@@ -40,9 +40,9 @@ $ npm install ntlm-soap-request
 ### Calling it from your app using the promise based api:
 
 ````javascript
-    var request = require('ntlm-soap-request')
+    var SoapRequest = require('ntlm-soap-request')
 
-        , request = new request({
+        , request = new SoapRequest({
             userName:'YOUR_USERNAME',
             password:'YOUR_PASSWORD',
             domain:'YOUR_WINDOWS_DOMAIN',
