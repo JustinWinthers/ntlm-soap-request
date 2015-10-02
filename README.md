@@ -94,8 +94,9 @@ soap.authorize()
 
     .then(function(token){
 
-        // token is not used here, but shown to illustrate it exists but it's cached
-        // in the `soap` object
+        /* token is not used here, but shown to illustrate it exists
+            but it's cached in the `soap` object
+        */
 
         //set your route for your app
         app.get('/route/to/soap/abstraction',function(req, res) {
