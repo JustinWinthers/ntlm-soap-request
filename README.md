@@ -92,8 +92,8 @@ var   express      = require('express')
 
 soap.authorize()
 
-   /* token is not used here, but shown to illustrate it exists
-      but it's cached in the `soap` object  */
+   /* token is not used here, but shown to illustrate it exists.
+      It's cached in the `soap` object  */
     .then(function(token){
 
         // set your route for your app
