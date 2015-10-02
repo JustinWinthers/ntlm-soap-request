@@ -9,6 +9,7 @@ var SoapRequest = require('ntlm-soap-request')
         endpoint:'WCF_SERVICE_URL'
     });
 
+
 soap.exec(function(err, result){
 
     if (err) console.log(err);
