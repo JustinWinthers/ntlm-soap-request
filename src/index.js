@@ -45,7 +45,7 @@ NtlmSoapRequest.prototype = {
     postType1ToServer: function(request, callback){
 
         return httpreq.post(request.options.url, {
-            body:request.soapRequest,
+            //body:request.soapRequest,
             headers:{
                 'Content-Type': 'application/soap+xml;charset=UTF-8;action=' + request.config.operationInputUrl,
                 'Connection' : 'keep-alive',
@@ -70,7 +70,7 @@ NtlmSoapRequest.prototype = {
     postType3ToServer: function(request, callback){
 
         return httpreq.post(request.options.url, {
-            body:request.soapRequest,
+            //body:request.soapRequest,
             headers:{
                 'Content-Type': 'application/soap+xml;charset=UTF-8',
                 'Connection' : 'Close',

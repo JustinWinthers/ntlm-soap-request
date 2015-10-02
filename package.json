@@ -36,10 +36,13 @@
     "url": "https://github.com/JustinWinthers/ntlm-soap-request.git"
   },
   "devDependencies": {
-    "eslint": "^1.5.1"
+    "chai": "^3.3.0",
+    "eslint": "^1.5.1",
+    "mocha": "^2.3.3",
+    "nock": "^2.13.0"
   },
   "scripts": {
-    "test": "npm run lint",
+    "test": "npm run lint  && ./node_modules/mocha/bin/mocha",
     "lint": "./node_modules/eslint/bin/eslint.js src test"
   },
   "author": "Justin Winthers",

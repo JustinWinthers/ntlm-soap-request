@@ -5,6 +5,6 @@
   "rules": {
     "indent": [2, 4],
     "quotes": [2, "single"],
-    "strict": [2, "global"]
+    "strict": [0, "global"]
   }
 }
